@@ -1,0 +1,135 @@
+#列表 list
+
+del name_list[1]: del 通常是从内存中删除一个变量，一般列表删除建议使用方法
+
+
+#元组 tuple
+
+不可修改
+格式字符串：print(" %s 的年龄是 %d, 身高是 %.2f cm" %("xiaoming",27,175))   输出：xiaoming 的年龄是 27, 身高是 175.00 cm
+
+#字典 dict
+	name_list={"name":"jack",
+			   "gender":"male",
+			   "age":"28"}
+	name_list["hobbies"]="basketball"   //增加、修改
+	name_list.pop("gender") //删除
+	print(name_list)
+	
+字典清空：name_list.clear()
+字典合并：name_list.update()
+
+#字符串
+##方法：判断
+str1="一千"
+print(str1.isdecimal())  #可以判断整数阿拉伯数字
+print(str1.isdigit()) #可以判断整数阿拉伯数字外，还可以判断特殊数字，比如1做上标
+print(str1.isnumeric())  #可以判断整数阿拉伯数字外，还可以判断特殊数字，比如1做上标，还可以判断汉字数字，比如“一千零一夜”
+
+##方法：查找，替换，以什么开头/结尾
+#查找和替换方法
+#replace方法不会修改原有字符串的内容
+str1="hello world"
+print(str1.replace("world","ruijun"))  #可以判断整数阿拉伯数字  输出： hello ruijun
+print(str1) 输出：hello world
+
+##方法：文本对齐 、去除空白（str1.strip）、拆分和连接（split,join），切片（[起始位置:结束位置:步长]） 
+
+#倒序切片
+list1=[1,2,3]
+print(list1[-1::-1]) #倒序排列
+
+##公共方法：
+
+#len（）， max（），min(), del(),
+#列表，元组，字符串可使用 + * 来拼接两个变量
+#in / not in 循环
+
+a=10  # a像一个便签纸，引用的是存放10这个数据的内存地址
+
+
+#局部变量和全局变量
+##在python函数内部执行时，会先查找函数内部有没有定义该变量，如果没有，会在函数外查找全局变量
+##在函数内部如果想修改全局变量，需要定义关键字 global a   a= 10
+##建议定义全局变量时增加一个gl_前缀
+
+#函数返回多个返回值
+result1,result2 = demo1()
+a,b=(b,a) #python中实现两个值的交换
+
+#函数内部修改调用参数的值，这个值只会在函数内部得到修改，并不修改调用的外部的实参变量，然而如果使用方法，会改变
+
+#缺省参数/默认参数需要注意的点
+一般缺省参数直接在函数定义时直接给定名称，并且缺省参数应该放在正常参数的后面，即末尾
+
+#多值参数，接受元组加一个*号，接受字典加两个**
+def demo1(*args,**kwargs):
+#多值参数，元组和字典的拆包：
+	def demo1(*args,**kwargs):
+
+
+
+			print(args)
+			print(kwargs)
+
+
+
+
+	gl_tumple=(1,2,3)
+	gl_dict={
+		"name":"xiaoming",
+		"grade":"1"
+	}
+
+	demo1(*gl_tumple,**gl_dict) #同样的，赋值时以* ， **来分别代入到对应的形参里
+
+
+
+#递归函数  # 
+
+#面向对象的三个特点，封装 继承 和多态
+
+为每个类创建一个对象成为类的实例化
+
+类属性和类方法：类是一种特殊的对象，类的属性和方法用于记录该类自己的一些相关的特征，比如，这个类创建了多少个对象
+
+单例：单实例
+
+异常：
+
+模块：
+1，创建setup文件
+2，执行 python3 setup.py build
+3，打包 python3 setup.py sdist
+
+解压压缩包，安装模块
+1，tar -zxvf hm_message-1.0.tar.gz
+2, sudo python3 setup.py install
+
+卸载模块：
+直接从安装目录下吧安装的模块目录删除
+
+事件监听：https://www.bilibili.com/video/BV1ex411x7Em?p=444 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+安装openJDK
+	$ sudo add-apt-repository ppa:openjdk-r/ppa
+	$ sudo apt update
+	$ sudo apt install openjdk-7-jdk
+
+	在/etc/profile末尾添加环境变量后保存再执行source /etc/profile
+
+		export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+		export JRE_HOME=$JAVA_HOME/jre
+		export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+		export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
+		执行完后输入$JAVA_HOME/bin/java -version  # 检查是否与直接执行 java -version 一样
+
+下载安装hadoop
+	http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz
+
+	hadoop-mapreduce-examples-2.10.0.jar
+	bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar grep input output 'dfs[a-z.]+'
+
+Hadoop安装参考文档：
+	https://cloud.tencent.com/developer/ask/196397
+	https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html
+	https://hadoop.apache.org/docs/r1.0.4/cn/quickstart.html
+
+
+
+https://cloud.tencent.com/developer/article/1078927
+https://www.jianshu.com/p/9fe3ff2bbe99
+
+
+CDH安装：
+	https://juejin.im/post/5cee40e66fb9a07f0b03a4ef
+	http://blog.51yip.com/hadoop/2249.html
+	
+	
+az disk create -n MyDisk -g NetworkWatcherRG --sku Premium_LRS  --size-gb 4 --location westus	
+	
+为确保用户可以高速下载Microsoft Teams，我们已将客户端安装文件缓存到本地，您可以通过以下地址直接下载：
+ 
+MacOS 下载
+https://teamsclient.blob.core.chinacloudapi.cn/teams/Teams_osx.pkg
+ 
+Windows (32位下载)
+https://teamsclient.blob.core.chinacloudapi.cn/teams/Teams_windows.exe
+ 
+Windows (64位下载)
+https://teamsclient.blob.core.chinacloudapi.cn/teams/Teams_windows_x64.exe
+ 
+安卓设备下载
+ 
+百度手机助手  https://shouji.baidu.com/software/26539903.html
+腾讯应用宝   https://sj.qq.com/myapp/detail.htm?apkName=com.microsoft.teams
+或.apk文件下载  https://teamsclient.blob.core.chinacloudapi.cn/teams/teamsChinaAndroid.apk
+ 

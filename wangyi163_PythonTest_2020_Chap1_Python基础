@@ -1,0 +1,17 @@
+RUCHAN电脑上python的安装路径：
+C:\Users\ruchan\AppData\Local\Programs\Python\Python37
+
+#dir()：查看某个变量类型或者某个库可以使用哪些方法 dir(str)
+
+>>> import json
+>>> dir(json)
+
+#三引号 可以多行换行，也可以用来注释
+
+	name='''ruijun
+	hello
+	this is a test
+	'''
+	print(name)
+
+https://blog.csdn.net/lixiaoyu101/article/details/84140463  python模块打包

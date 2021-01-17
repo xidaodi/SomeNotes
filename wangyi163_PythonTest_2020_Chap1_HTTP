@@ -1,0 +1,13 @@
+讲师博客：https://www.cnblogs.com/weke/articles/5547994.html
+
+1，HTTP是默认持久连接，在Request Hearders中，请求头Connection:keep-alive,表示持久连接，任意一端没有明确断开的时候都会保持TCP连接。
+2，HTTP的请求方法：
+	GET 
+	POST 
+	PUT： 后两个用的比较少，因为提交数据的时候没有校验的过程，POST有，GET是获取资源，因为不需要提交数据时要的校验 
+	DELETE
+3，Cookie,Session,Token
+
+
+
+

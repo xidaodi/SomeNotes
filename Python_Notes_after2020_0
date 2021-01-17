@@ -1,0 +1,798 @@
+# 可变序列，列表:x=[1,2,3]
+1，可包含任意类型的对象：数值、字符串等；
+2，可随意变换列表长度
+3，可嵌套
+
+#不可变序列，元组（tuple）x=(1,2,3)
+1，可包含任意类型的对象：数值、字符串等；
+2，可嵌套
+
+#python生成器：range
+rang(1,9,1)
+
+#不可变序列：str其实也是一种序列，属于不可变序列
+x="hello" x[0]='h'
+list(x) 输出 ['h', 'e', 'l', 'l', 'o', 'r', 'u', 'i', 'j', 'u', 'n']，list是一个函数啊这里
+
+#【小结】适用于序列（包括可变不可变）的通用操作：
+1，判断是否属于序列
+	in / not in 
+2, 序列连接与重复（前后需同类型，否则会报错）
+	+  *
+3，切片
+	x=[1,2,3,4]  y=x[0:-1](也就是y=[1,2,3])
+4，在3的基础上，加上一个 按一定步长访问数据
+	m=list(range(10))
+	m=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	m[0:-1:2] 输出 [0, 2, 4, 6, 8]
+5，一些基本的内置的全局函数：
+	m=list(range(10))；
+	len(m);
+	max,min(m);
+	sum(m);
+	m.index(1);
+	m.count(1)
+
+#可变序列list常用操作：添加、删除、插入等
+	x.append([1,2,3])   添加一个元素
+	x.extend([1,2,3])	添加多个元素
+	x.insert()
+	x.remove()
+	x.pop()
+	x.sort()
+	x.copy()
+	x.reverse()
+	x.sorted
+
+# 文件路径 path=r"c:\desktop" （加r，防止将\d认成转义字符）
+
+#转化  x=int("3") y=str(3)
+
+#字符串的一些内置函数 h.replace("my","her",1) 等，内置函数不改变字符串本身
+
+#格式化字符
+	x="ruijun" print("this is : %s" %x)
+	%i:整型 %s:字符型 %f:浮点型 
+	print("%.2f"%y)：指定小数点位数（默认四舍五入）
+	print("%i"%y)：如果y是小数，整型输出的话相当于int(y)直接取整，不做四舍五入
+	使用format方法：{}代表占位符
+		"{}and{}".format(x,y) x="hello"，y="hi" 为变量 ；输出为：helloandhi
+		"my job is {work}".format(work='设计师')
+		"the mumber is {:f}".format(4.2)   花括号里面指定格式用  :f  :%(变成百分数) :d(整数)
+
+
+
+#包含映射关系的 字典：stu1={"name":"Tom","id":"001","major":"chemistry","grade":"1"};
+1，key必须是字符串，value可以是任意对象  stu2={"name":1,"id":["b",2],"major":"chemistry","grade":"2"};
+2，字典是无序的
+3，字典里的key是唯一的
+4，可以任意添加删减元素，也可以嵌套
+5，如何生成一个字典 ：
+	1，直接定义 
+	2, 用dict()函数  stu3=dict(name="michael",id="003")
+	3，用dict()函数，从列表生成 list=[("name","fei"),("id",1)] ； dict(list)
+	4，当只有key的列表时，用dict()函数生成：
+		keys=["name",'grade'] 
+		stu4=dict.fromkeys(keys)
+		Out[42]: {'name': None, 'grade': None}
+
+#字典的元素访问及遍历	
+	1，"name" in stu_score；
+	2，person={'name':"jerry",'age':12,'address':{"country":'china',"city":"beijing"}}
+	   person["address"]["city"] 
+	   Out[54]: 'beijing'
+	3，person.get("name")
+	   Out[56]: 'jerry'
+	4，返回字典全部key
+	   for (k,v) in person.items():
+			print("{}_{}".format(k,v))
+
+#字典的常用操作
+1，合并：person.update(person1)
+2，弹出：person1.pop("age",print("nokey"))
+3，全部弹出：person1.popitem()
+4，字典的value值可以定义函数
+
+#if-else 条件判断语句：
+##示例：如下表示判断输入的字符串是否为真，input（）表示从屏幕输入一串字符串，类型是字符串，要判断字符串的真假，需要调用
+一个字符串的内置函数：eval（）表示执行字符串的内容，借此来判断真假
+
+	x=input()
+
+	if eval(x) == True:
+		print("True")
+	else:
+		print("False")
+
+## 输入1==2， 输出 False
+
+#for循环
+1，计数
+2，遍历序列，映射
+	##
+	x=dict(name="Nicole",age=18)
+
+	for (k,v) in x.items():
+
+		print(k,v)
+	##	
+		
+	##	用两个序列生成一个字典
+	x=["a","b","c"]
+	y=[1,2,3]
+	z=[]
+	for m in range(len(x)):
+		z.append([x[m],y[m]])
+	z=dict(z)
+	print(z)
+	##
+3，做迭代
+	##算个阶乘
+	x=int(input())
+	n=1
+	for i in range(1,x+1):
+		n=n*i
+		print(i,n)
+	##算个阶乘
+
+# while语句
+
+#while-if-break 常用组合
+	x=0
+	s=0
+
+	while True:
+		x=x+1
+		s=s+x
+		print(x,s)
+		if x>100:
+			break
+#break 中断循环
+#跳出本次循环，执行下次循环
+	#1-50列表里，求所有奇数的和
+	x=list(range(1,51))
+	print(x)
+	s=0
+	for i in x:
+		if i%2 !=0:
+			s = s + i
+		else:
+			continue
+		print(i,s)
+	##
+
+##嵌套循环练习：乘法口诀表
+	x=list(range(1,10))
+	y=list(range(1,10))
+	print(x,y)
+
+
+	for i in x:
+		for j in y:
+			s=i*j
+			print("{}*{}={}".format(i,j,s))
+
+##
+
+##
+	x=list("abc")
+	y=list('123')
+	print(x[0:-1],y)
+	z=[]
+	for i in x:
+		for j in y[0:-1]:
+			z.append(i+j)
+	print(z)
+##
+
+
+
+##函数
+
+
+#常用内置函数
+1，abs():求绝对值
+2，max(x)  min(y) sum(x)
+3，sorted(x):和x.sort()方法的区别：函数不会改变变量本身，方法会改变
+   比如：x=[3,1,2]，y=sorted(x)，y=[1, 2, 3],x不变
+         x=[3,1,2]，x.sort(),x=[1,2,3]
+4, 获取商和余数  divmod(9,2)：（4,1）
+5，pow(2,3) 乘方： 2的3次方=8
+6，四舍五入小数 round(9.789,1) 9.8
+
+
+##自定义函数
+1，设置默认参数
+	def f(x,y=2):
+		s=x**y
+		return s
+
+
+	print(f(3))	
+
+2，设置可变参数：意味着参数的个数可以随意调整，注意，python会默认把可变参数传入一个元组
+
+	def f(*x):
+		print(x)
+
+	f("abc",1,{"name":"milan","age":25},[34,34])
+
+	输出：('abc', 1, {'name': 'milan', 'age': 25}, [34, 34])
+
+
+
+	def f(*x):
+		ave=sum(x)/len(x)
+		print(ave)
+		return ave
+
+	f(5,4,3)
+
+##全局变量和局部变量 局部变量的作用域只在函数内
+
+##lambda函数：
+
+	f=lambda a,b,c:a+b+c
+
+	a=f(1,2,3)
+
+	print(a)
+
+	print(type(f))
+
+
+或者在命令行中直接输入： (lambda x:x*2)(6)  输出为12
+##总结：lambda函数非常简单，当不想命名，只想执行一个临时函数的时候可以用一下，实际使用不多，但是要看的懂，lambda函数可以
+有多个形参，但是只有一个表达式输出。
+
+
+##判断字符是否为字母/数字/空格
+s.isalpha()/s.isdigit()/s.isspace()
+
+##if 语句中的 或or  和and
+
+##模块：多个函数、多个功能组成了一个脚本文件
+	from 模块名 import 函数名
+
+### python的标准模块
+1，random模块：
+
+	import random
+	#from learn000 import inf,power
+
+	x=random.random()
+	y=random.randint(0,10)
+	z=random.choice('hello') #随机选取一个元素出来
+	print(x,y,z)
+
+	lst=list(range(10))
+	sli=random.sample(lst,5)  #random.sample(a，b) 随机获取a中指定b长度的片段
+	print(lst,sli)
+
+	random.shuffle(lst)
+	print(lst)  ##随机打乱，注意打乱的是序列本身
+	
+2，time 模块：
+	import time
+
+	print("hello")
+	time.sleep(5)   # 程序休眠多少秒
+	print("Hello Again")
+
+	print(time.localtime())
+	print(type(time.localtime()))
+	print(time.ctime())
+	print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))  输出：
+	
+time.struct_time(tm_year=2020, tm_mon=3, tm_mday=30, tm_hour=21, tm_min=10, tm_sec=16, tm_wday=0, tm_yday=90, tm_isdst=0)
+<class 'time.struct_time'>
+Mon Mar 30 21:10:16 2020
+2020-03-30 21:10:16
+
+3，math模块
+
+##安装第三方的模块
+ pip install xlrd 安装一个excel相关的包
+ 
+##使用xlrd模块，示例：
+	import xlrd
+
+
+	data=xlrd.open_workbook(r"C:\Users\ruchan\Desktop\python.xlsx") #读取文件
+
+	print(type(data))
+
+	table1=data.sheet_by_index(0)  #获取表格方法1，通过索引下标获取
+	table2=data.sheet_by_name("Sheet1") #获取表格方法2，通过sheet名称获取
+
+	nrow=table1.nrows #获取行数
+	ncol=table2.ncols #获取列数
+	print(nrow,ncol)
+
+	s=[]
+
+	for i in range(nrow):
+
+		s.append(table1.row_values(i)) #每行打印出来
+
+
+	t=[]
+	for i in range(ncol):
+		t.append(table1.col_values(i)) #每列打印出来
+
+	print(s,t)
+
+作业：按照字典列表的格式打印excel中的值：输出：[{'var1': 1.0, 'var2': 'a'}, {'var1': 2.0, 'var2': 'b'}, .....]
+	import xlrd
+
+	data=xlrd.open_workbook(r"C:\Users\ruchan\Desktop\python.xlsx") #读取文件
+
+	print(type(data))
+
+	table1=data.sheet_by_index(0)  #获取表格方法1，通过索引下标获取
+	table2=data.sheet_by_name("Sheet1") #获取表格方法2，通过sheet名称获取
+
+	nrow=table1.nrows #获取行数
+	ncol=table2.ncols #获取列数
+	print(nrow,ncol)
+	
+	val=table1.row_values(0)
+	print(val)
+	s=[]
+	ss=[]
+	for i in range(1,nrow):
+		s=table1.row_values(i)
+		# print(s)
+		l=[]
+		for j in range(ncol):
+			l.append([val[j],s[j]])
+			# print(l)
+		dic=dict(l)
+		# print(dic)
+		ss.append(dic)
+
+	print(ss)
+
+##文件读写操作：open(路径，模式，编码) 
+路径就是要读取的文件的路径，模式有：读，写，读写，追加四种
+	path=r"C:\Users\ruchan\Desktop\office365.txt"
+
+	file=open(path,'r')  #
+	file.seek(0)   #先把光标移至开头
+	print(file.read())  #打印读出的数据
+	file.close()
+	
+##os系统模块
+	import os
+
+	os.name   #输出字符串正在使用的平台，windows用nt表示，linux用posix表示
+	os.getcwd()  #得到当前工作目录
+	os.listdir() #返回指定目录下的所有文件和目录名
+	os.chdir() #切换到指定路径
+	os.remove() # 删除一个文件
+	os.path.split() #返回一个文件的目录名和文件名
+	os.path.exists() #用来检验给出的路径是不是真的存在
+	
+##文件的读取
+	path=r"C:\Users\ruchan\Desktop\office365.txt"
+
+	file=open(path,'r')
+
+	file.seek(0)
+	l=file.readlines() #整行读取，到列表中
+	print(type(l),l)
+
+	for i in l:  #打印整个文件
+		print(i)
+
+	##也可以直接使用file做迭代,这里file认为是一个可迭代对象
+	print(type(file))  #打印整个文件
+	for i in file:
+		print(i)
+
+##open()中的编码
+#
+
+	name='\nhello\nruijun'
+	name=name.strip()  #去掉首尾的换行
+	print(name)
+#
+
+##文件的写入操作  write()和writelines的区别，write（）只能写一个字符串，writelines里面可以加变量
+#练习1
+
+	path=r"C:\Users\ruchan\Desktop"
+
+	file=open(path+r"\test.txt","w",encoding="utf8")
+	file.write("hello ruijun") #会覆盖原文件的内容
+	# file.close() //需要加file.close()或file.flush()，这样就可以将文件关闭，内存里的数据写入到文件中
+	file.flush() 
+
+	print("done")
+
+#练习2
+	path=r"C:\Users\ruchan\Desktop"
+
+	file=open(path+r"\test.txt","w",encoding="utf8")
+	file.writelines("hello\nthis is a test \n") #file.writelines()中写入的是一个迭代对象，str或者list都可以
+	file.flush()
+
+	print("done")
+
+#练习3
+	path=r"C:\Users\ruchan\Desktop"
+
+	file=open(path+r"\test.txt","w",encoding="utf8")
+
+	lst=list(range(1,11))
+	strs=['a','a','a','a','a','a','a','a','a','a']
+	# ss=[]
+	for i in range(len(lst)):
+		ss=[str(lst[i]),",",strs[i],"\n"]
+		file.writelines(ss)
+
+	file.flush()
+
+	print("done")
+
+文件输出：
+1,a
+2,a
+3,a
+4,a
+5,a
+6,a
+7,a
+8,a
+9,a
+10,a
+
+##pickle模块，作用，将程序中运行的对象信息保存到文件中去，永久存储
+	import pickle
+
+	data={"a":[1,2,3],"name":"Ruijun","age":28}
+
+	path=r"C:\Users\ruchan\Desktop"
+	file=open(path+"test.pkl","wb")
+
+	pickle.dump(data,file) #将data这个对象写入file这个pickle二进制文件
+	file.close()
+
+然后桌面上就出现了 test.pkl 这个文件，接下来再把这个问价中的数据读出来
+	ff=open(path+"\\test.pkl","rb")
+	ss=pickle.load(ff)
+	print(ss)
+
+
+
+##认识HTML网页
+
+##requests包  快速上手
+
+	import requests
+
+	u="https://bj.lianjia.com/ershoufang/101101891898.html"
+	q={"wd":"学习使我快乐"}
+	r=requests.get(url=u,timeout=1) #这里可以设置timeout参数，超过这个时间没有爬回来数就认为是报错
+	print(r,r.status_code,r.encoding)
+	#r.encoding="utf-8" #改变内容编码
+	#print(r.text) #获取网页内容，出来的就是网页的html源码
+	print(r.headers) #获取头域信息
+
+## 解析网页 BeautifulSoup
+
+安装包：
+pip install BeautifulSoup4
+pip install lxml
+
+#用法记录
+	import requests
+	from bs4 import BeautifulSoup
+
+	u="https://new.qq.com/omn/TWF20200/TWF2020041000164000.html"
+	r=requests.get(url=u)
+	print(r,r.status_code,r.encoding)
+	soup=BeautifulSoup(r.text,"lxml")
+	print(type(r.text)) #输出：<class 'str'>
+	print(type(soup)) #输出：<class 'bs4.BeautifulSoup'>
+	print(soup.prettify())  #有缩进的源代码
+	print(soup.head)
+	print(soup.title)
+	print(type(soup.title)) #<class 'bs4.element.Tag'> 标签
+	print(soup.p)  #找到的标签内容都是第一个内容的标签
+	# 每一个标签有两个属性，name和attrs
+	print(soup.p.name)
+	print(soup.p.attrs)  # {'class': ['one-p']} 输出是个字典
+	print(soup.p.string) # 获取里面的文字，string只适用于单个标签，嵌套标签比如head就不适合直接用,若要显示，需要用text，输出的格式为str
+	print(soup.head.text)
+
+##文档树
+
+#contents和children都是可以返回直接子节点，区别在于
+	print(soup.head.contents)  #返回的是一个列表
+
+	for i in soup.head.children: # soup.head.children返回的是一个生成器 需要用循环的方式把每一行的内容给显示出来
+		print(i)
+
+#显示所有的子孙节点
+	for i in soup.body.descendants: # 显示所有的子孙节点
+		print(i)
+
+#显示父节点
+	title=soup.title
+	print(title.parent) #直接显示title所属父节点的全部内容
+
+#显示所有的父节点（是一个生成器）
+	for i in title.parents: # 显示所有的子孙节点
+		print(i)
+
+#兄弟节点，和自己同一等级的节点
+	print(soup.p.next_sibling) #返回下一个兄弟节点
+	print(soup.p.previous_sibling) #返回上一个兄弟节点
+
+	for i in soup.p.next_siblings: #返回所有的兄弟节点，无论前后
+		print(i)
+
+#前后节点，不针对兄弟节点，跳到该节点所在父节点的下一个邻点
+	print(soup.p.previous_element) #next_element
+
+
+##find_all(name,attrs,limit，keyword)
+
+	参数---attrs的意思：（用的不多）
+		比如 print(soup.find_all("img"))  #返回的是个列表
+		输出：[<img class="content-picture" src="//inews.gtimg.com/newsapp_bt/0/11562842259/1000"/>]
+		class="content-picture" 就是它的一个属性，因此可将其筛选出来：
+		print(soup.find_all("img","content-picture")) 
+
+	参数---limit的意思：代表要返回几个结果
+		print(soup.find_all("img",limit=2))  #返回的两个结果
+
+	参数---keyword的意思，每一个标签的属性值筛选出来
+		print(soup.find_all("img",alt=True))
+
+	正则表达式：
+	先导入一个正则的包 import re
+		import requests
+		from bs4 import BeautifulSoup
+		import re
+		u="https://new.qq.com/ch/world/"
+		r=requests.get(url=u)
+		print(r,r.status_code,r.encoding)
+		soup=BeautifulSoup(r.text,"lxml")
+		for i in soup.find_all("a",href=re.compile('https://new.qq.com/omn/20200410/')):
+			print(i.attrs["href"])
+			print(i.text)
+
+##find(name,attrs,limit，keyword) 找到第一个，与find_all用法一样，两个可以混着用
+	for i  in soup.find("div","qq_conent clearfix").find_all("p"):
+    print(i)
+
+
+##json工具包安装和介绍
+1,利用requests包：
+	import requests
+	u="https://echarts.apache.org/examples/data/asset/data/confidence-band.json"
+	r=requests.get(u)
+	print(r.text)
+	print(type(r.text)) # 类型为str
+	print(r.json())
+	print(type(r.json())) #类型为序列
+	for i  in r.json():
+		print(i)
+2，引入json包：import json
+	json.loads():把文件数据转为json（列表格式）
+	json.dumps():把列表转为str文件数据
+	例子：
+		import requests
+		import json
+		u="https://echarts.apache.org/examples/data/asset/data/confidence-band.json"
+		r=requests.get(u)
+		# print(r.text)
+
+		data=json.loads(r.text)
+		print(data)
+		print(type(data)) #列表
+
+		js=json.dumps(data)
+		print(js)
+		print(type(js)) # str
+
+3，json写入文件
+	import requests
+	import json
+	u="https://echarts.apache.org/examples/data/asset/data/confidence-band.json"
+	r=requests.get(u)
+	# print(r.text)
+
+	data=json.loads(r.text)
+	print(data)
+
+	f=open(r"C:\Users\ruchan\Desktop\test.txt","w")
+	f.seek(0)
+
+
+	f.writelines(["value,date,l,u\n"])
+	for i in data:
+		print(i)
+		f.writelines([str(i['value']),",",str(i['date']),",",str(i['l']),",",str(i['u']),",","\n"])
+
+	f.close()
+
+4，写入csv文件，很简单，将上面的代码里	f=open(r"C:\Users\ruchan\Desktop\test.txt","w")
+改为：f=open(r"C:\Users\ruchan\Desktop\test.csv","w") 结果很服帖，都放入了对应的表格中
+
+
+##小作业：实战01：将爬取的网页的url、title 、headers信息写入一个文本文件
+
+	import requests
+	from bs4 import BeautifulSoup
+	import json
+	u="https://new.qq.com/rain/a/TWF2020041101094700"
+	r=requests.get(u)
+	# print(r.text)
+	print(r.headers)
+	print(type(r.headers))
+	soup=BeautifulSoup(r.text,"lxml")
+	print(soup.title.text)
+
+	f=open(r"C:\Users\ruchan\Desktop\test01.txt","w")
+	f.seek(0)
+	f.writelines(["url:",u,",","\n","title:",str(soup.title.text)])
+
+	for i  in r.headers:
+		print(i)
+		f.writelines([i," : ",r.headers[i],"\n"])
+
+	f.close()
+
+
+##小作业：实战02：将腾讯国际新闻网页里所有某一天的新闻标题拿出来
+
+	import requests
+	from bs4 import BeautifulSoup
+	import re
+	import json
+	u="https://new.qq.com/ch/world/"
+	r=requests.get(u)
+	soup=BeautifulSoup(r.text,"lxml")
+
+	f=open(r"C:\Users\ruchan\Desktop\test01.txt","w")
+	f.seek(0)
+	f.write("2020-04-11号的新闻：\n")
+
+	for i in soup.find_all("a",href=re.compile("https://new.qq.com/omn/20200411/")):
+		print(i.text)
+		f.writelines([i.text,",url=",i.attrs["href"],"\n"])
+
+	f.close()
+
+##小作业：实战03：在实战02的基础上，进一步把每个url新闻下的正文(p)整理出来
+	import requests
+	from bs4 import BeautifulSoup
+	import re
+	import json
+	u="https://new.qq.com/ch/world/"
+	r=requests.get(u)
+	soup=BeautifulSoup(r.text,"lxml")
+
+	f=open(r"C:\Users\ruchan\Desktop\test01.txt","w")
+	f.seek(0)
+	f.write("2020-04-11号的新闻：\n")
+
+	for i in soup.find_all("a",href=re.compile("https://new.qq.com/omn/20200411/")):
+		print(i.attrs["href"])
+		f.writelines([i.text,",url=",i.attrs["href"],"\n"])
+		href=i.attrs["href"]
+		r=requests.get(href)
+		s=BeautifulSoup(r.text,"lxml")
+		for i in s.find_all("p"):
+			print(i.text)
+			
+	f.close()
+
+
+##最后一节大作业（分步做的）
+1，一般为了降低网站反爬虫的封锁概率，通常请求网站的时候把header作为参数传入request,因此第一步先制作hearder参数
+	1），一般每一个模块尽量写成函数
+	2），函数中养成好习惯，第一行先注明该函数的作用
+	3），然后另存为headers_format.py文件，方便后面引入，如下是headers_format.py的代码：
+		# path=r"C:\Users\ruchan\Desktop\test.txt"
+
+		def headers_format(path):
+			# 函数用于将存放着网页header信息的文件读取出来，并且转换为字典输出
+			file=open(path,"r")
+			file.seek(0)
+
+			l=file.readlines()
+			# print(type(l),l)
+			ss=[]
+			for i in l:
+				i=i.strip("\n")  #去掉收尾的换行
+				# print(i)
+				m=i.split(": ")
+				# print(m)
+				if m[0][0]==":": #判断如果字符串第一个还是有，冒号，再给它去掉
+					m[0] = m[0].strip(':')
+				# print(m)
+				ss.append(m)
+			# print(ss)
+			dic=dict(ss)
+			# print(dic)
+			file.close()
+			return dic
+
+		path=input("please input the url which Heaaders-Info in : ")
+
+		print(headers_format(path))
+
+2，分析网页，最后得到一个含有二级网址的标签列表，把结果存入指定的文本文件中
+	import requests
+	from bs4 import BeautifulSoup
+	import re
+	from headers_format import headers_format
+
+	def url_analysis(u,h,s,to_path):
+		'''
+		用于分析网页，最后得到一个含有二级网址的标签列表，把结果存入指定的文本文件中
+		u: 要分析的网页
+		h: 头部信息
+		s: 二级网址包含特定字段
+		to_path: 要存入的文件路径
+
+		'''
+		r = requests.get(url=u, headers=h)
+		soup = BeautifulSoup(r.text, "lxml")
+		news = soup.find_all("a", href=re.compile(s), class_="picture")  # 这里class要加一盒下划线，因为它是个特殊字符
+
+		f = open(to_path, "w")
+		f.seek(0)
+		for i in news:  # news是一个列表
+			# print(i.attrs["href"])
+			f.writelines([i.attrs["href"], "\n"])
+		f.close()
+
+
+
+
+	web_url=r"https://new.qq.com/ch/world/"
+	text_headers_path=r"C:\Users\ruchan\Desktop\test.txt"
+	web_headers=headers_format(text_headers_path)
+	web_s="https://new.qq.com/omn/20200412/"
+	to_path=r"C:\Users\ruchan\Desktop\test01.txt"
+
+	url_analysis(web_url,web_headers,web_s,to_path)
+
+	print("finished")
+
+3，main函数：需要增加一块定义，修改如下：目的：防止别的文件调用该python文件时直接执行main函数，所以加上这个标记表示这块代码只在本文件中运行
+	if __name__=="__main__":
+
+    web_url=r"https://new.qq.com/ch/world/"
+    text_headers_path=r"C:\Users\ruchan\Desktop\test.txt"
+    web_headers=headers_format(text_headers_path)
+    web_s="https://new.qq.com/omn/20200412/"
+    to_path=r"C:\Users\ruchan\Desktop\test01.txt"
+
+    url_analysis(web_url,web_headers,web_s,to_path)
+
+    print("finished")
+
+4，练习4，原题：爬取链家网的二手房信息，这里只列出来爬取script中的二手房信息中的房子坐标位置，用于演示另外一个正则表达式的用法
+	比如要爬这个网址的房子的position信息：
+	view-source:https://bj.lianjia.com/ershoufang/101104733657.html
+
+	import requests
+	import re
+	from bs4 import BeautifulSoup
+
+	r=requests.get("https://bj.lianjia.com/ershoufang/101104733657.html")
+	soup=BeautifulSoup(r.text,"lxml")
+	pattern= "resblockPosition:\'(.*?)\'"  #这里注意两点，一个是给引号加\表示转义，否则会被当成python中的字符串标志处理；第二点是中间（）里面的部分，点表示所有字符，*表示是任意个数，？表示什么暂时不知道
+	position=re.search(pattern,r.text).group(0) #group(0)表示最后提取的是resblockPosition:\'(.*?)\'整个这串的内容
+	print(position)
+	print(type(position))
+
+
+
+

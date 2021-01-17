@@ -1,0 +1,84 @@
+terraform destroy -auto-approve
+terraform init
+terraform apply
+ 
+ 
+https://www.elastic.co/guide/en/elastic-stack/current/overview.html
+
+##安装ELK
+#参考文档：
+	https://www.jianshu.com/p/43e3a2f437fd
+	https://www.elastic.co/guide/en/logstash/7.5/installing-logstash.html
+	https://www.elastic.co/guide/en/elasticsearch/reference/7.5/deb.html
+	https://www.elastic.co/guide/en/kibana/7.5/deb.html
+	https://www.elastic.co/guide/en/beats/filebeat/7.6/setup-repositories.html#_apt
+#
+	sudo systemctl start kibana.service
+	sudo systemctl stop kibana.service
+
+	sudo systemctl start elasticsearch.service
+	sudo systemctl stop elasticsearch.service
+	
+	systemctl restart filebeat
+	
+	systemctl status logstash.service
+ 
+	#中间用过的命令
+		 curl -X GET http://localhost:9200/
+		 curl -X GET 'http://localhost:9200/Ruijun_Test_0/_search?pretty'
+		 
+		 curl -X GET 'http://localhost:9200/filebeat-*/_search?pretty'
+		 
+		 curl -X GET 'http://localhost:9200/filebeat-2020.02.12/_doc/n_tjOnABv8r1tjpKbsOO/_score
+		 137.117.39.117:5601
+##安装ELK结束
+
+##简单配置
+	https://www.cnblogs.com/libinblogs/p/9285868.html
+	
+	logstash配置：
+	
+	input {
+	  beats {
+		port => 5044
+	  }
+	}
+
+	output {
+	  elasticsearch {
+		hosts => "127.0.0.1:9200"
+		manage_template => false
+		index => "Ruijun_Test_0"
+	  }
+	}
+	
+	
+	
+	
+##简单配置结束
+
+
+##如何使用ELK
+	https://www.elastic.co/guide/cn/elasticsearch/guide/current/intro.html
+	https://www.elastic.co/guide/cn/index.html
+	https://segmentfault.com/q/1010000003990269
+	
+##如何使用ELK结束
+
+
+##notes:
+1,ES区别与传统数据库的一个概念：相关性 https://www.elastic.co/guide/cn/elasticsearch/guide/current/_full_text_search.html
+
+ /var/lib/elasticsearch
+sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
+
+#读的一些资料
+
+	https://www.zhihu.com/question/59957272
+	目前整个斗鱼负责日志这一块的ELK集群总共包含50+物理服务器、700T数据、日增数据量为15T。
+
+
+	https://zhuanlan.zhihu.com/p/25874641
+
+
+

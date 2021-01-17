@@ -1,0 +1,27 @@
+# git/github
+
+git init  //将当前文件初始化为一个git工作区
+git add 1.text //将这个文件提交到归档区
+git commit -m "第一次提交，提交1.text" //将这个文件提交到本地归档区
+git remote add origin https://github.com/firstdemo.git  //将远端的github仓库添加进来，命名为origin
+git push -u origin master //将本地归档区的内容同步到远端仓库origin的master分支上
+
+修改某个文件后点保存
+git add . //将当前目录下所有的文件都添加到缓冲区，这时候通过查看git status 显示，添加到缓冲区的文件已经变成绿色
+git push origin master //将本地更改的内容继续同步到远端仓库
+
+git reset --mixed ed847bacbbdfa43e697bc88903cf0a4a1032e6b2 //mixed是将归档区和缓冲区回滚到要退回到的那一步
+git reflog 查看提交操作的记录和每一步的hash值
+git reset --hard ed847ba 是归档区缓冲区工作区全部回退到指定的版本
+git reset --soft ed847ba 是将归档区做了回滚 缓冲区和工作区没有变化
+git revert ed847bacbbdfa43e697bc88903cf0a4a1032e6b2 //可以把中间某一次的commit 撤销而不影响后面的操作
+
+##分支
+git branch -v //查看当前有哪些分支，*表示当前在哪个分支上
+git checkout -b b1 //创建并切换到新分支b1上
+git checkout master //返回主干分支
+git merge b1 //将b1分支上的改动合并到主干分支来
+
+##将远端的仓库更新同步到本地并合并
+git pull
+git pull 其实相当于git fetch（把远端内容同步下来，此时本地master还在原来的commit点上） + git merge origin/master（将本地master和远端master合并，两个在同一commit上）

@@ -1,0 +1,306 @@
+man
+
+#查找文件 
+	find /var -name test.file
+	locate test.file 
+	ls -l | grep mysql
+
+#切换为普通用户 su - ruchan
+	
+#linux下查看mysql的配置文件
+	https://blog.csdn.net/tribalElders/article/details/53895982
+
+
+Linux网络管理
+1，网络状态查看
+	ifconfig/ip
+2，网络故障排除
+   1，ping 这个IP地址或者域名，查看是否能到达目标主机
+   2，traceroute、mtr 查看到达目标主机的每一跳的质量
+   3，nslookup 查找域名对应的IP
+   4, telnet检查目标主机的端口连接状态
+   5, tcpdump 查看数据包
+   6，netstat、ss 检测服务器上监听的端口
+   
+内存和磁盘管理：笔记见OneNote
+	UUID=db81bcfe-3082-4ae3-af80-25b0c736d584   /datadrive   ext4   defaults,nofail   1   2
+
+打包和解压缩
+	打包： tar czf /tmp/example.tar.gz /etc(要打包的文件夹)
+		   tar cjf /tmp/example.tar.bz2  /etc(要打包的文件夹)
+	解压缩：
+		   tar xzf /tmp/example.tar.gz -C(指定解压目录) /etc
+		   tar xjf /tmp/example.tar.bz2 -C(指定解压目录) /etc
+
+查看服务状态：https://www.cnblogs.com/zhming26/p/6155201.html
+	systemctl status logstash.service		   
+
+
+查看系统版本：
+	cat /proc/version 
+	lsb_release -a
+
+安装图形化界面：
+	sudo apt-get install gnome-shell
+	sudo apt-get install ubuntu-gnome-desktop
+	安装出来界面是真的难看。。。。why。。。。
+	https://blog.csdn.net/weixin_39864440/article/details/100574792 
+	vncserver
+
+#常用命令：
+ls c* : 利用通配符可以找到某个匹配的文件（注意不是文件夹，是文件，常用的通配符 * ？，*表示任意多个字符，？表示一个字符，
+		[123]23.txt，表示匹配这个字符组中的任意字符；{a-f}表示匹配a-f范围内的任意一个字符）
+touch text.txt
+mkdir -vp test2/test
+rm -r test ：删除文件夹，不加参数r就是删除文件 rm text.txt
+rm (-r) * 也可以使用通配符命令来删除文件
+man command 快捷键：q 退出；空格键 下一屏；b 回滚一屏，f 前滚一屏，enter 滚动一行。
+cd, cd ~ 都表示切换到当前用户的主目录
+cd - 在最近使用的两个目录之间来回切换
+tree ~： 显示/home/ruchan文件夹下面的文件结构
+tree -d：只显示目录 tree aa 显示某个路径下面的文件结构
+cp  aa/test/test.txt .  ：将某个目录下的文件复制到当前目录下
+cp -i aa/test/test.txt  ./a_test.txt   ：中间加个参数 -i ，执行后会提示：cp: overwrite './a_test.txt'? 如果不加，默认覆盖
+cp 不能直接复制文件夹，需要加-r参数 cp -r aa/ ./dd ： 把aa文件夹下面的内容拷贝到当前目录的dd文件夹下
+mv 源文件/目录 目标目录  ：移动文件
+mv test.txt test1.txt ：同一目录下的文件重命名
+mv -i ：加-i参数，做是否重写的提示
+cat 和 more 的区别：cat 显示全部内容  more会分屏显示
+cat -b test1.txt：对非空输出行输出编号
+cat -n test1.txt：对输出的所有行编号
+grep: 在某个文件中搜索指定的文本内容
+grep "hello" test1.txt
+grep "Hello" test1.txt -i ： -i  忽略大小写
+grep "Hello" test1.txt -n  ： -n 标出搜索内容的行号
+grep "Hello" test1.txt -v  ： -v 显示不包含文本的所有行
+grep ^"h" test1.txt ： ^"字母"  搜索指定字母开头的行数和内容
+grep "h"$ test1.txt ： "字母"$  搜索指定字母结尾的行数和内容
+echo hello > test1.txt ：把hello覆盖掉test1.txt文件里的内容 >表示覆盖
+echo world >> test1.txt ：把hello追加到test1.txt文件里的最后一行 >>表示追加
+ls -lh >> test2.txt ：把ls -lh命令查询的结果追加到最后一行
+
+shutdown -r ：重新启动电脑
+
+ifconfig： 查看这台计算机的网卡信息
+ping baidu.com ：检测到目标主机是否连通
+
+scp -P 22 test.txt ruchan@20.48.0.103:~/    ：远程拷贝到某个文件夹下
+scp -P 22 -r Karl/  ruchan@20.48.0.103:~/Karl  ：远程拷贝文件夹 加-r参数
+
+ls -lh: 结果解析
+	drwxrwxrwx 2 ruchan ruchan 4.0K Apr 30 05:07 Karl  //d表示是一个目录还是一个文件，rwx 读写执行，
+	第一组表示文件所有者的权限，第二组表示文件所有者所在组的权限，第三个表示不在这个组的其他人的权限
+	2表示硬连接数，硬连接数指的是有多少种途径可以到达改文件/目录：
+	一般来说，一个文件的硬连接数是1，只有当前目录可达；
+	一个文件夹除了当前文件可达，也可以在别的地方通过绝对路径可达，所以至少有两个，如果该文件夹下面还有子目录，一级子目录向上
+	返回也可达该目录，所以算一个，有几个一级子目录就再加几个硬连接数
+
+chmod +/-rwx 文件名|目录名 ：用户/组 修改文件目录权限  可执行权限：指的是对该文件夹执行shell命令
+linux 执行一个文件: ./文件名
+
+sudo su : su (substitute user,替代的用户，也是一个命令)；sudo 命令表示以其他身份来执行命令， linux中默认sodu以root用户执行，需要输入密码，有效期为5分钟
+su tianxi : 切换到其他用户
+sudo groupadd dev : 添加组，需加sudo用root权限执行
+sudo groupdel dev : 删除组
+cat /etc/group  : 查看是否添加组成功，组的信息存在/etc/group这个文件里
+sudo chgrp -R dev2 文件夹 ： 修改文件夹所在的组
+
+sudo useradd -m -g dev2 tianxi ： -m,自动创建用户家目录，如果不带-m参数，后续家目录下就不会有该用户的文件夹和路径； 
+								  -g 指定组名，如果没有指定，默认会创建一个同名组
+passwd 用户名： 设置用户密码 sudo passwd tianxi 
+sudp userdel tianxi ：删除某个用户
+cat  /etc/passwd -n ： 用户信息保存在 /etc/passwd
+id tianxi : 查看该用户的身份信息，uid(用户ID) gid(组ID)
+who ： 查看当前登录的所有用户信息
+whoami ：查看当前用户的账户名
+usermod -g 组名 用户名 ： 将用户更改到某个主组
+usermod -G 组名 用户名 ： 将用户添加到某个副组
+usermod -s /bin/bash 用户名： 将用户名每次启动从bash启动
+
+
+which passwd： which + 命令 可以查看某个命令的执行文件是谁
+ls -l 文件名（上面which命令查询的结果）：可以查看该文件的详细信息
+	说明：/bin 是二进制执行文件目录，主要用于具体应用
+	      /sbin (system binary)是系统管理员专用的二进制代码存放目录，主要用于系统管理
+		  /usr/bin 用户后期安装的一些软件
+		  /usr/sbin 超级用户的一些管理程序
+		  
+su tianxi：切换到用户tianxi
+su - tianxi : 切换的时候把工作目录也切换到田烯的家目录
+
+sudo chown ruchan test1.txt ： 更改文件拥有者
+sudo -R 组名 文件名|目录名 ：递归修改文件或者目录的组
+sudo chmod -R 755 文件名|目录名
+
+date ：查看当前系统时间
+cal  ：查看日历  cal -y  :查看整年日历
+
+df -h : disk free ，查看磁盘剩余空间大小
+du -h : disk usage, 显示目录下的文件大小
+
+ps : process status 统计当前正在执行的进程
+ps aux: 参数 ： a,显示终端上的所有进程，包括其他用户的进程；u 显示进程的详细状态；k 显示没有控制终端的进程
+top : 动态显示运行中的进程并且排序
+kill -9 进程号 : -9表示强行终止某进程
+
+
+find 目录名 -name "*test*":在某目录下寻找某文件
+
+ln -s /home/ruchan/test.txt a : ln -s 文件绝对路径 软连接命名，如果不加-s参数，表示建立的是一个硬连接
+	:在linux中，文件数据和文件名是分开存储的，软连接是建立了一个软连接名和文件名的映射关系，硬连接是建立了一个文件名的小名（相当于副本），
+	所以文件名删除后，它的软连接就找不到自己指向的文件名是谁了，但是硬连接因为它是小名，即使原文件名删除了，也还是可以指导原文件名指向的
+	数据文件内容的，但其实硬连接很少用。
+	
+
+tar -cvf demo.tar test1 ：打包文件，tar 只负责打包 不负责压缩
+tar -xvf demo.tar ：解包 参数说明：c生成档案文件 x解开档案文件 v列出归档解档的详细过程显示进度 f指定档案文件名称
+tar -zcvf gzipdemo.tar.gz test.txt ：用gzip压缩
+tar -zxvf gzipdemo.tar.gz -C ./cc ：解压缩 -C 指定解压缩到的路径
+tar -jcvf bz2demo.tar.bz2 *.txt ：同理，用bz2的格式压缩
+
+sudo apt insatll 软件名
+sudo apt remove 软件名
+
+vim：
+正常（非编辑）模式下，yy复制整行 ，p 粘贴 ，3yy 复制三行， 从光标位置复制到这一行的结尾：y$
+			d剪切整行 ， u撤销 ctr+r 取消撤销（也就是重新执行撤销掉的那几条命令）
+			x删除某个字符 ， r + 字符 将某个字符替换 
+			g移动到第一行 G移动到最后一行 ，行数+G 移动到这一行，：set nu 把行数显示出来
+			^移动到某一行的开头 $移动到某一行的结尾
+
+命令模式：  ：wq 保存并退出
+			：q! 不保存退出
+			：! ifconfig  : 临时同时执行一下别的命令然后enter 退出回来
+			/x 查找x ， 按n 下一个
+			:s/hello/hi 把某一行的hello替换成hi
+			:s/are/is/g 把某一行所有的 are 替换成is
+			:3,5s/are/is/g 把3-5行行所有的 are 替换成is
+			:%s/hello/hi 把全文的hello替换成hi
+			
+			:set nonu 把行号设置取消
+
+
+可视模式：  v 字符可视模式
+			V 行可视模式
+			d 选中的删除 
+			
+CentOS,Redhat 使用yum包管理器，软件包安装格式为rpm
+Debian Ubuntu 使用apt包管理器，软件安装包格式为deb
+
+apt list | grep python |more
+
+源代码安装： wget heeps://XXX.tar.gz
+			 tar zxvf XXX.tar.gz -C 指定目录
+			 cd  指定目录
+			 ls  查看该文件下有没有configure文件
+			 如果有 ./configure --prefix=/usr/ 这里可以指定目录安装  
+			 make  :编译
+			 make install  :安装
+tail -f 文件名： 可以一直追踪某个文件		 
+nohup tail -f 文件名 & : nohup ：让这个程序后台运行，即使终端关掉也不影响运行，并且把所有的结果打印到nohup.out文件中去
+
+systemctl stop/start/restart/enable/disable/reload service名称
+ 
+			 
+
+			 
+			 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+		   
+		   

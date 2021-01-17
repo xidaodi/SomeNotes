@@ -1,0 +1,51 @@
+alt+p/n向下、上
+
+#数值类型： 
+整型，浮点型，字符型，布尔型：int float str bool;
+
+type();显示某个值或者某个变量的类型；
+
+==，表示判断，eg,1==2,1是否等于2.
+！=，不等于。
+
+'''hello       \\'''表示可换行的字符串输出
+my name is sesan
+nice to meet you'''   ''',可以换行；效果等于：print("hello\nmy name is sesan\nnice to meet you")
+
+基本运算符号：
+取模：%;  幂：**; 取整//,eg,9//7=1.
+
+#序列（list）类型 x=[1,2,'hi'，[4,2,6]] 可包含任意类型的值,x[-1]表示倒数第一个值。
+x.append(999) output:[1, 2, 'hi', [4, 2, 6], 999]，表示在后面增加一个元素；
+x.remove(y),表示删除索引y的位置上的元素，x.remove(1)，output:[2, 'hi', [4, 2, 6], 999]
+
+
+#序列类型：元祖（tuple）y=(1,2,3) 不可变序列，不可改变数值，不可增加删除等。
+
+#生成器 range,eg,m=range(1,10,2) 起始点，终结点，步长  
+ list（）生成列表 list(range(5))
+
+#序列类型：文本序列str 不可变序列 但可用replace（‘T’，‘A’）生成一个新的str,eg,x='tom',x.replace('t','a'),output:x=aom
+
+#序列操作： 重复，x=[1],x*4=[1,1,1,1]
+	    切片，x[m:n],表示从x[m]到x[n-1],eg,y=[89,54,32,54,45],y[2:4]=[32, 54]
+            删除，del x[m:n]
+            插入，x.insert(i,value)在x[i]处插入一个值。
+            len(x),长度；max(x),最大值；min(x),最小值；sum(x),求和；x.index(value),寻找某个值的索引；x.count(value),计算某个值的出现次数。
+
+#可变元素的基本操作
+添加，x.append(元素值)  x.extend([列表值])  x.remove(value),注意这里只删除第一个值
+弹出，x.pop(),默认弹出最后一个值，x.pop(m),弹出x[m]这个值；x.reverse(),x反序，本身值改变。
+复制，1，m=x,m和x指向的是同一个引用，改变x，m也变；但当m=x.copy(),m指向的是另外一个引用，值与x相等，当x改变时，不影响m的值。
+排序，x.sort(),按首字母或者数值由小到大排序；排序并复制，m=sorted(x),排序并复制，复制原理同上，不改变x的顺序；
+转义字符：\n; 全部转义,x=r'c:\user\desktop'
+
+
+eval(x):执行x这条语句，判断真假，如 x=(1<2),执行则为真；
+
+
+
+
+
+
+
